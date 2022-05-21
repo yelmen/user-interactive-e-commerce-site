@@ -1,0 +1,117 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+}
+a{
+    text-decoration: none
+}
+ul li a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    transition: 0.3s ease;
+}
+#navbar li a:hover{
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(253, 253, 253);
+}
+.logo{
+    height: 50px;
+    width: 50px;
+    padding-left: 20px
+}
+#header{
+    background-color: #98ecab;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 80px;
+    box-shadow: 0 5px 15px rgba(0,0,0 0.06);
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
+
+}
+#navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+#navbar li{
+    list-style: none;
+    padding:0 20px;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+.my{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 60%;
+    display: inline-block;
+    align-content: center;
+    margin-left:300px;
+  }
+h2{
+    margin-top: 50px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.adname{
+    height: 220px;
+}
+.noselect {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+          -webkit-tap-highlight-color: transparent;
+          margin-top: 15px;
+          margin-left:8px;
+  }
+  
+button {
+
+      width: 150px;
+      height: 50px;
+      cursor: pointer;
+      border: none;
+      font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      color: rgba(30, 6, 6, 0.5);
+      font-size: 20px;
+      border-radius: 4px;
+      box-shadow: inset 0px 3px 5px rgba(255,255,255,0.5), 0px 0px 10px rgba(0,0,0,0.15);
+      background: rgb(2,0,36);
+    background: linear-gradient(45deg, rgba(2,0,36,0) 5%, rgba(77, 21, 21, 0.5) 6%, rgba(255,255,255,0) 9%, rgba(46, 10, 10, 0.5) 10%, rgba(255,255,255,0) 17%, rgba(67, 7, 7, 0.5) 19%, rgba(255,255,255,0) 21%);
+      background-size: 150%;
+      background-position: right;
+      transition: 0.3s;
+  }
+  
+button:hover {
+      background-position: left;
+      color: rgb(0, 0, 0);
+      box-shadow: inset 0px 3px 5px rgba(255,255,255,1), 0px 0px 10px rgba(0,0,0,0.25);
+  }
+  
+button:focus {
+      outline: none;
+  }

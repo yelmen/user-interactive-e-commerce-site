@@ -1,0 +1,23 @@
+html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: "Open Sans",Arial,helvetica, sans-serif;
+    color: #646464;
+    background:#ffff;
+    line-height: 1.5;
+    font-style: normal;
+    font-variant: normal;
+    text-decoration: none;
+    border: 0;
+    outline: 0;
+
+}
+#tablo{
+    width: 1065px;
+    height: 100%;
+    border: 0;
+
+}
