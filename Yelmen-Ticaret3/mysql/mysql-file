@@ -1,0 +1,595 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Anamakine: 127.0.0.1
+-- Üretim Zamanı: 29 Tem 2022, 11:57:10
+-- Sunucu sürümü: 10.4.21-MariaDB
+-- PHP Sürümü: 7.3.31
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Veritabanı: `yelmenticaret`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `ayarlar`
+--
+
+CREATE TABLE `ayarlar` (
+  `id` tinyint(3) UNSIGNED NOT NULL,
+  `siteAdi` varchar(50) NOT NULL,
+  `siteTitle` varchar(60) NOT NULL,
+  `siteDescription` varchar(150) NOT NULL,
+  `siteKeywords` varchar(255) NOT NULL,
+  `siteCopyrightMeti` varchar(255) NOT NULL,
+  `siteLogosu` varchar(30) NOT NULL,
+  `siteEmailAdresi` varchar(50) NOT NULL,
+  `siteEmailSifresi` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `ayarlar`
+--
+
+INSERT INTO `ayarlar` (`id`, `siteAdi`, `siteTitle`, `siteDescription`, `siteKeywords`, `siteCopyrightMeti`, `siteLogosu`, `siteEmailAdresi`, `siteEmailSifresi`) VALUES
+(1, 'Yelmen Ticaret', 'Üreticiden Tüketiciye', 'Üreticiden tüketiciye aracılar olmadan meyve ve sebze satış platformu', 'meyve, sebze, yelmen, ticaret, yelmen ticaret, patates, elma, armut, kilogram, kasa, üretici, tüketici', '2022 Yelmen Ticaret Tüm Telif Hakları Saklıdır.', 'Logo.png', 'info@yelmenticaret@gmail.com', '1837837yelmenticaret');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `kategoriler`
+--
+
+CREATE TABLE `kategoriler` (
+  `id` int(11) NOT NULL,
+  `urunAdi` varchar(70) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `kategoriler`
+--
+
+INSERT INTO `kategoriler` (`id`, `urunAdi`) VALUES
+(1, 'Patates'),
+(2, 'Domates'),
+(3, 'Armut'),
+(4, 'Ayva'),
+(5, 'Ahududu'),
+(6, 'Akai'),
+(7, 'Ananas'),
+(8, 'Armut'),
+(9, 'Avokado'),
+(10, 'Ayva'),
+(11, 'Böğürtlen'),
+(12, 'Dut'),
+(13, 'Elma'),
+(14, 'Erik'),
+(15, 'Guava'),
+(16, 'Hurma'),
+(17, 'İncir'),
+(18, 'Karpuz'),
+(19, 'Kayısı'),
+(20, 'Kiraz'),
+(21, 'Kivi'),
+(22, 'Kuru Üzüm'),
+(23, 'Kızılcık'),
+(24, 'Limon'),
+(25, 'Mandalina'),
+(26, 'Mango'),
+(27, 'Muz'),
+(28, 'Nar'),
+(29, 'Nektarin'),
+(30, 'Portakal'),
+(31, 'Rambutan'),
+(32, 'Trabzon Hurması'),
+(33, 'Yabanmersini'),
+(34, 'Yayla Muzu'),
+(35, 'Yıldız Meyvesi'),
+(36, 'Zeytin'),
+(37, 'Çilek'),
+(38, 'Üzüm'),
+(39, 'Şeftali'),
+(40, 'Nektari'),
+(41, 'Acur'),
+(42, 'Bamya'),
+(43, 'Bayırturpu'),
+(44, 'Bezelye'),
+(45, 'Biber'),
+(46, 'Brokoli'),
+(47, 'Brüksel Lahanası'),
+(48, 'Dolmalık Kabak'),
+(49, 'Domates'),
+(50, 'Enginar'),
+(51, 'Frenksoğanı'),
+(52, 'Hardal Otu'),
+(53, 'Hindiba'),
+(54, 'Siyah Zeytin'),
+(55, 'Soğan'),
+(56, 'Su Kabağı'),
+(57, 'Tatlı Patates'),
+(58, 'Turp'),
+(59, 'Yabani Havuç'),
+(60, 'Yapraklı Turp'),
+(61, 'Yer Lahanası'),
+(62, 'Yeşil Fasülye'),
+(63, 'Yeşil Soğan'),
+(64, 'Yeşil Zeytin'),
+(65, 'Zeytin'),
+(66, 'Şalgam'),
+(67, 'Çeri Domates'),
+(68, 'Kavun'),
+(69, 'Ispanak'),
+(70, 'Kabak'),
+(71, 'Kara Lahana'),
+(72, 'Karnabahar'),
+(73, 'Kereviz'),
+(74, 'Kuşkonmaz'),
+(75, 'Kırmızı Biber'),
+(76, 'Kırmızı Kabak'),
+(77, 'Kırmızı Pancar'),
+(78, 'Kırmızı Turp'),
+(79, 'Kırmızı Lahana'),
+(80, 'Lahana'),
+(81, 'Mantar'),
+(82, 'Marul'),
+(83, 'Mısır'),
+(84, 'Patlıcan'),
+(85, 'Pazı'),
+(86, 'Pırasa'),
+(87, 'Rezene'),
+(88, 'Roka'),
+(89, 'Salatalık'),
+(90, 'Sarımsak'),
+(91, 'Patlican');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `sepet`
+--
+
+CREATE TABLE `sepet` (
+  `id` int(11) NOT NULL,
+  `urunId` int(11) NOT NULL,
+  `urunAd` varchar(70) NOT NULL,
+  `urunUretici` varchar(70) NOT NULL,
+  `urunFiyat` int(11) NOT NULL,
+  `musteriId` varchar(255) NOT NULL,
+  `musteriAd` varchar(15) NOT NULL,
+  `musteriSoyad` varchar(20) NOT NULL,
+  `musteriAdres` varchar(250) NOT NULL,
+  `musteriTelefon` varchar(14) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `sepet`
+--
+
+INSERT INTO `sepet` (`id`, `urunId`, `urunAd`, `urunUretici`, `urunFiyat`, `musteriId`, `musteriAd`, `musteriSoyad`, `musteriAdres`, `musteriTelefon`) VALUES
+(1, 70, ' Patates', '    Mustafa ', 12, '', '', '', '', '0'),
+(2, 70, ' Patates', '    Mustafa ', 12, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(3, 63, ' Patates', '  Merve nezahat ', 8, '12', ' çalıştın mı ', 'lan ', 'topcu mahallesi 1534.sokak 24/22', '123456'),
+(4, 63, ' Patates', '  Merve nezahat ', 8, '12', ' çalıştın mı ', 'lan ', 'topcu mahallesi 1534.sokak 24/22', '123456'),
+(27, 57, ' Patates', '  Mustafa ', 5, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(28, 57, ' Patates', '  Mustafa ', 5, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(29, 48, ' elma', '  Mustafa ', 5, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(30, 43, ' Patates', '  MEHMET ', 5, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(31, 63, ' Patates', '  Merve nezahat ', 8, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(32, 42, ' kalbim', ' ben', 101010, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(33, 46, ' elma', '  Mustafa ', 123, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(34, 63, ' Patates', '  Merve nezahat ', 8, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(35, 70, ' Patates', '    Mustafa ', 12, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(36, 70, ' Patates', '    Mustafa ', 12, '15', 'MEHMET', 'YELMEN', '', '123456'),
+(37, 63, ' Patates', '  Merve nezahat ', 8, '15', 'MEHMET', 'YELMEN', '', '123456'),
+(38, 70, ' Patates', '    Mustafa ', 12, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(39, 70, ' Patates', '    Mustafa ', 12, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(40, 70, ' Patates', '    Mustafa ', 12, '40', 'Firdevs', 'YELMEN', '', '506 545 9029'),
+(41, 63, ' Patates', '  Merve nezahat ', 8, '13', 'aysenur', 'yelmen', 'topcu mahallesi 1534.sokak 24/22', '123456'),
+(42, 57, ' Patates', '  Mustafa ', 5, '13', 'aysenur', 'yelmen', 'topcu mahallesi 1534.sokak 24/22', '123456'),
+(43, 70, ' Patates', '    Mustafa ', 12, '41', 'Mehmet', 'ZEğEREK', '', '123456'),
+(44, 70, ' Patates', '    Mustafa ', 12, '41', 'Mehmet', 'ZEğEREK', '', '123456'),
+(45, 63, ' Patates', '  Merve nezahat ', 8, '41', 'Mehmet', 'ZEğEREK', '', '123456'),
+(46, 70, ' Patates', '    Mustafa ', 12, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(47, 70, ' Patates', '    Mustafa ', 12, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(48, 70, ' Patates', '    Mustafa ', 12, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(49, 70, ' Patates', '    Mustafa ', 12, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(50, 70, ' Patates', '    Mustafa ', 12, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(51, 70, ' Patates', '    Mustafa ', 12, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(52, 70, ' Patates', '    Mustafa ', 12, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(53, 70, ' Patates', '    Mustafa ', 12, '22', 'Merve nezahat', 'Baş', '', '123456'),
+(54, 70, ' Patates', '    Mustafa ', 12, '22', 'Merve nezahat', 'Baş', '', '123456'),
+(55, 70, ' Patates', '    Mustafa ', 12, '43', 'Merhaba', 'BEN MUSTAFA', '', '123456'),
+(56, 57, ' Patates', '  Mustafa ', 5, '44', 'Hasan', 'ÇıNAR', '', '1515153131'),
+(57, 70, ' Patates', '    Mustafa ', 12, '45', 'Salih', 'ERDURUCAN', '', '111111'),
+(58, 83, ' Patates', '  Akın ', 8, '46', 'Akın', 'çABUK', '', '11111111'),
+(59, 84, ' Patates', '    Mustafa ', 5, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430'),
+(60, 84, ' Patates', '    Mustafa ', 5, '23', '  Mustafa', 'YELMEN  ', '171717', '554 863 4430');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `uretimyeri`
+--
+
+CREATE TABLE `uretimyeri` (
+  `id` int(11) NOT NULL,
+  `ilce` varchar(70) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `uretimyeri`
+--
+
+INSERT INTO `uretimyeri` (`id`, `ilce`) VALUES
+(1, 'Elmadağ'),
+(3, 'Elvankent'),
+(4, 'Beypazarı'),
+(5, 'Nallıhan'),
+(6, 'Akyurt'),
+(7, 'Altındağ'),
+(8, 'Ayaş'),
+(9, 'Bala'),
+(10, 'Çamlıdere'),
+(11, 'Çankaya'),
+(12, 'Çubuk'),
+(14, 'Etimesgut'),
+(15, 'Evren'),
+(16, 'Gölbaşı'),
+(17, 'Güdül'),
+(18, 'Haymana'),
+(19, 'Kahramankazan'),
+(20, 'Kalecik'),
+(21, 'Keçiören'),
+(22, 'Kızılcahamam'),
+(23, 'Mamak'),
+(24, 'Polatlı'),
+(25, 'Pursaklar'),
+(26, 'Sincan'),
+(27, 'Şereflikoçhisar'),
+(28, 'Yenimahalle');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `urunadlari`
+--
+
+CREATE TABLE `urunadlari` (
+  `id` int(11) NOT NULL,
+  `urunAdi` varchar(70) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `urunadlari`
+--
+
+INSERT INTO `urunadlari` (`id`, `urunAdi`) VALUES
+(1, 'Ahududu'),
+(2, 'Akai'),
+(3, 'Ananas'),
+(4, 'Armut'),
+(5, 'Avokado'),
+(6, 'Ayva'),
+(7, 'Böğürtlen'),
+(8, 'Dut'),
+(9, 'Elma'),
+(10, 'Erik'),
+(11, 'Guava'),
+(12, 'Hurma'),
+(13, 'İncir'),
+(14, 'Karpuz'),
+(15, 'Kayısı'),
+(16, 'Kiraz'),
+(17, 'Kivi'),
+(18, 'Kuru Üzüm'),
+(19, 'Kızılcık'),
+(20, 'Limon'),
+(21, 'Mandalina'),
+(22, 'Mango'),
+(23, 'Muz'),
+(24, 'Nar'),
+(25, 'Nektarin'),
+(26, 'Portakal'),
+(27, 'Rambutan'),
+(28, 'Trabzon Hurması'),
+(29, 'Yabanmersini'),
+(30, 'Yayla Muzu'),
+(31, 'Yeşil Erik'),
+(32, 'Yıldız Meyvesi'),
+(33, 'Zeytin'),
+(34, 'Çilek'),
+(35, 'Üzüm'),
+(36, 'Şeftali'),
+(37, 'Nektari'),
+(38, 'Acur'),
+(39, 'Bamya'),
+(40, 'Bayırturpu'),
+(41, 'Bezelye'),
+(42, 'Biber'),
+(43, 'Brokoli'),
+(44, 'Brüksel Lahanası'),
+(45, 'Dolmalık Kabak'),
+(46, 'Domates'),
+(47, 'Enginar'),
+(48, 'Frenksoğanı'),
+(49, 'Hardal Otu'),
+(50, 'Hindiba'),
+(51, 'Ispanak'),
+(52, 'Kabak'),
+(53, 'Kara Lahana'),
+(54, 'Karnabahar'),
+(55, 'Kereviz'),
+(57, 'Kuşkonmaz'),
+(58, 'Kırmızı Biber'),
+(59, 'Kırmızı Kabak'),
+(60, 'Kırmızı Pancar'),
+(62, 'Kırmızı Turp'),
+(63, 'Kıvırcık Lahana'),
+(64, 'Lahana'),
+(65, 'Mantar'),
+(66, 'Marul'),
+(67, 'Mısır'),
+(68, 'Patates'),
+(69, 'Patlıcan'),
+(70, 'Pazı'),
+(71, 'Pırasa'),
+(72, 'Rezene'),
+(73, 'Roka'),
+(74, 'Salatalık'),
+(75, 'Sarımsak'),
+(76, 'Siyah Zeytin'),
+(77, 'Soğan'),
+(78, 'Su Kabağı'),
+(79, 'Tatlı Patates'),
+(80, 'Turp'),
+(81, 'Yabani Havuç'),
+(82, 'Yapraklı Turp'),
+(83, 'Yer Lahanası'),
+(84, 'Yeşil Fasülye'),
+(85, 'Yeşil Soğan'),
+(86, 'Yeşil Zeytin'),
+(87, 'Zeytin'),
+(88, 'Şalgam'),
+(89, 'Çeri Domates'),
+(90, 'Kavun');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `urunler`
+--
+
+CREATE TABLE `urunler` (
+  `id` int(11) NOT NULL,
+  `ureticiId` int(11) NOT NULL,
+  `ureticiAdi` varchar(50) NOT NULL,
+  `ureticiSoyadi` varchar(70) NOT NULL,
+  `ureticiIlce` varchar(150) NOT NULL,
+  `urunAdi` varchar(255) NOT NULL,
+  `urunStok` int(11) NOT NULL,
+  `urunStokbirim` varchar(11) NOT NULL,
+  `urunFiyat` int(11) NOT NULL,
+  `urunAciklama` varchar(250) NOT NULL,
+  `urunGorsel` varchar(250) NOT NULL,
+  `kategoriId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `urunler`
+--
+
+INSERT INTO `urunler` (`id`, `ureticiId`, `ureticiAdi`, `ureticiSoyadi`, `ureticiIlce`, `urunAdi`, `urunStok`, `urunStokbirim`, `urunFiyat`, `urunAciklama`, `urunGorsel`, `kategoriId`) VALUES
+(30, 0, ' MEHMET ', 'YELMEN ', 'Niye bozuldun ', 'patates', 15, '0', 5, 'ki :((', 'ornekresim_10.jpg', 1),
+(31, 0, ' MEHMET ', 'YELMEN ', 'Artık ağlayacam ay', 'patates', 15, '0', 5, 'cidden sıkıldım artık', 'ornekresim_39.png', 1),
+(32, 0, ' MEHMET ', 'YELMEN ', 'Düzgün çalış', 'patates', 15, '0', 5, 'oldukça taze ve organik bir patates', 'ornekresim.png', 1),
+(33, 0, ' MEHMET ', 'YELMEN ', 'Ağlayacam ay', 'ağlıyorum şu an', 123, '0', 5, 'cidden artık', 'ornekresim_1.png', 1),
+(35, 0, ' MEHMET ', 'YELMEN ', 'Nallıhan', 'Ayva', 10, '0', 1000, 'çok iyi', 'ornekresim_3.png', 1),
+(36, 0, ' MEHMET ', 'YELMEN ', 'Nallıhan', 'Ayva', 123, '0', 123, 'çok iyi', 'ornekresim_4.png', 1),
+(39, 0, '[value-2]', '[value-3]', '[value-4]', '[value-5]', 1, '0', 1, '[value-8]', '[value-9]', 1),
+(42, 0, 'ben', 'benben', 'evim', 'kalbim', 100000, '0', 101010, 'güzel', 'ehe.png', 1),
+(43, 0, ' MEHMET ', 'YELMEN ', 'Nallıhan', 'Patates', 10, '0', 5, 'slm', 'ornekresim_7.png', 1),
+(44, 0, ' Mustafa ', 'YELMEN ', 'Elvankent', 'Armut', 10, '0', 12, 'çaliş', 'ornekresim_8.png', 1),
+(45, 0, ' Mustafa ', 'YELMEN ', 'Elvankent', 'Patates', 10, '0', 12, 'slm', 'ornekresim_11.png', 1),
+(46, 0, ' Mustafa ', 'YELMEN ', 'Elmadağ', 'elma', 10, '0', 123, 'çaliş', 'ornekresim_12.png', 1),
+(48, 0, ' Mustafa ', 'YELMEN ', 'Elmadağ', 'elma', 15, '0', 5, 'çok iyi', 'ornekresim_14.png', 1),
+(49, 0, ' Mustafa ', 'YELMEN ', 'Elmadağ', 'elma', 15, '0', 5, 'deneme', 'ornekresim_15.png', 2),
+(51, 0, ' Mustafa ', 'YELMEN ', 'Elvankent', 'Patates', 10, '0', 12, 'slm', 'ornekresim_17.png', 2),
+(53, 0, ' Mustafa ', 'YELMEN ', 'Elvankent', 'Armut', 10, '0', 5, 'oldukça taze ve organik bir patates', 'ornekresim_18.png', 3),
+(57, 0, ' Mustafa ', 'YELMEN ', 'Beypazarı', 'Patates', 15, '0', 5, 'çok iyi', 'ornekresim_22.png', 1),
+(58, 0, ' Mustafa ', 'YELMEN ', 'Çamlıdere', 'Bezelye', 123, '0', 123, 'oldukça taze ve organik bir patates', 'ornekresim_23.png', 44),
+(59, 0, ' Mustafa ', 'YELMEN ', 'Nallıhan', 'Domates', 10, '0', 123, 'çok iyi', 'ornekresim_24.png', 2),
+(60, 0, ' Mustafa ', 'YELMEN ', 'Elvankent', 'Biber', 1000, '0', 8, 'biberler kendi bahçemizin ürünüdür ve tazedir', 'ornekresim_25.png', 45),
+(61, 0, ' aysenur ', 'yelmen ', 'Çankaya', 'Biber', 12, '0', 12, 'hayat kadar acı bir biber', 'ornekresim_26.png', 45),
+(62, 0, ' Merve nezahat ', 'Baş ', 'Pursaklar', 'Biber', 123, '0', 10, 'ben hayatımda bu kadar güzel bir biber görmedim', 'ornekresim_27.png', 45),
+(64, 0, ' Merve nezahat ', 'Baş ', 'Ayaş', 'Domates', 15, '0', 7, 'Ayaş domatesi gardaş', 'ornekresim_28.png', 2),
+(65, 0, ' Merve nezahat ', 'Baş ', 'Keçiören', 'Domates', 123, '0', 12, 'ürünüm kaymak yemeyen manyak', 'ornekresim_29.png', 2),
+(66, 0, ' Mustafa ', 'YELMEN ', 'Çubuk', 'Biber', 10, 'on', 123, 'çaliş', 'ornekresim_30.png', 45),
+(67, 0, ' Mustafa ', 'YELMEN ', 'Akyurt', 'Biber', 15, 'on', 5, 'deneme', 'ornekresim_31.png', 45),
+(68, 0, ' Mustafa ', 'YELMEN ', 'Haymana', 'Biber', 12, 'ton', 12, 'çaliş', 'ornekresim_32.png', 45),
+(69, 0, '   Mustafa ', 'YELMEN   ', 'Kalecik', 'Biber', 12300, 'adet', 123, 'deneme', 'ornekresim_33.png', 45),
+(70, 0, '   Mustafa ', 'YELMEN   ', 'Keçiören', 'Patates', 123, 'kg', 12, 'oldukça taze ve organik bir patates', 'ornekresim_4.jpeg', 1),
+(71, 0, '   Mustafa ', 'YELMEN   ', 'Kızılcahamam', 'Biber', 15, 'ton', 8, 'deneme', 'ornekresim_34.png', 45),
+(72, 0, ' Firdevs ', 'YELMEN ', 'Elvankent', 'Biber', 5, 'ton', 5, 'doğal ve organik', 'ornekresim_35.png', 45),
+(75, 0, ' aysenur ', 'yelmen ', 'Güdül', 'Patlıcan', 10, 'kg', 7, 'çok iyi', 'ornekresim_38.png', 69),
+(76, 0, ' aysenur ', 'yelmen ', 'Kalecik', 'Patlıcan', 123, 'kg', 8, 'oldukça taze ve organik bir patlıcan', 'ornekresim_39.png', 69),
+(77, 0, ' Mehmet ', 'ZEğEREK ', 'Nallıhan', 'Biber', 20, 'ton', 8, 'hayat kadar acı bir biber', 'ornekresim_40.png', 45),
+(79, 23, '   Mustafa ', 'YELMEN   ', 'Kalecik', 'Patlıcan', 10, 'ton', 12, 'çok iyi', 'ornekresim_41.png', 69),
+(80, 22, ' Merve nezahat ', 'Baş ', 'Kalecik', 'Armut', 12, 'ton', 12, 'çok iyi', 'ornekresim_42.png', 3),
+(83, 46, ' Akın ', 'çABUK ', 'Elvankent', 'Patates', 10, 'ton', 8, 'kendi evimde ürettim taze ve organik', 'ornekresim_43.png', 1),
+(84, 23, '   Mustafa ', 'YELMEN   ', 'Beypazarı', 'Patates', 10, 'ton', 5, 'oldukça taze ve organik bir patates', 'ornekresim_44.png', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `userlastname` varchar(60) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `userphone` varchar(15) NOT NULL,
+  `Pass` varchar(150) NOT NULL,
+  `useraddres` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `userlastname`, `email`, `userphone`, `Pass`, `useraddres`) VALUES
+(12, ' çalıştın mı ', 'lan ', 'oha@gmail.com ', '123456', '123456', 'topcu mahallesi 1534.sokak 24/22'),
+(13, 'aysenur', 'yelmen', 'aysenuryelmen@gmail.com', '123456', '123456', 'topcu mahallesi 1534.sokak 24/22'),
+(14, 'yıllardır küllenmiş', 'aşk', 'cengizkurtoğlu@gmail.com', '05548634430', '1837837', 'topcu mahallesi 1534.sokak 24/22'),
+(15, 'MEHMET', 'YELMEN', 'yelmenmehmet@gmail.com', '123456', '123456', ''),
+(17, ' Firdevs', 'Yelmen ', 'yelmenfirdevs@gmail.com ', '123456', '123456', 'topcu mahallesi 1534.sokak 24/22'),
+(18, 'Muhammet mustafa', 'Kocakaya', 'kkaya@gmail.com', '123456', '123456', ''),
+(19, 'Bura', 'Niye çalışıyo', 'amk@gmail.com', '123456', '123456', ''),
+(20, 'Deneme', 'Deneme', 'denememe@gmail.com', '123456', '123456', ''),
+(21, 'Hadi bakalim', 'Bismillah', 'allahimbismillah@gmail.com', '123456', '123456', ''),
+(22, 'Merve nezahat', 'Baş', 'mervebas2000@gmail.com', '123456', '123456', ''),
+(23, '  Mustafa', 'YELMEN  ', 'yelmenmustafa@gmail.com  ', '554 863 4430', '1837837', '171717'),
+(24, 'Mustafa yelmen', 'YELMEN', 'oha@gmail.com', '05548634430', '123456', ''),
+(25, 'Mustafa yelmen', 'YELMEN', 'oha@gmail.com', '05548634430', '1837837My.', ''),
+(26, 'Mustafa yelmen', 'YELMEN', 'oha@gmail.com', '05548634430', '1837837My.', ''),
+(27, 'Mustafa yelmen', 'YELMEN', 'oha@gmail.com', '05548634430', '1837837My.', ''),
+(28, 'Mustafa yelmen', 'YELMEN', 'oha@gmail.com', '05548634430', '1837837My.', ''),
+(29, '', '', 'admin@admin.admin', '', '1837837My.', ''),
+(30, '', '', 'admin@admin.admin', '', '1837837My.', ''),
+(31, '', '', 'admin@admin.admin', '', '1837837My.', ''),
+(32, '', '', 'admin@admin.admin', '', '1837837My.', ''),
+(33, 'Wtf', 'NE ALAKA', 'enyenisi@gmail.com', '123456', '123456', ''),
+(34, '', '', 'admin@admin.admin', '', '1837837My.', ''),
+(35, 'Mustafa yelmen', 'YELMEN', 'admin@admin.admin', '123456', '123456', ''),
+(36, 'Mustafa yelmen', 'YELMEN', 'admin@admin.admin', '05548634430', '123456', ''),
+(37, 'Mustafa yelmen', 'YELMEN', 'admin@admin.admin', '05548634430', '1837837My.', ''),
+(38, 'Mustafa yelmen', 'YELMEN', 'basarili@gmail.com', '05548634430', '123456', ''),
+(39, 'Mustafa yelmen', 'YELMENEEEEE', 'oha@gmail.com', '05548634430', '123456', ''),
+(40, 'Firdevs', 'YELMEN', 'firdevsyelmen@gmail.com', '506 545 9029', '123456', ''),
+(41, ' Mehmet', 'ZEğEREK ', 'zegerek@hotmail.com ', '123456', '123456', 'topcu mahallesi 1534.sokak 24/22'),
+(42, 'Deneme', 'YELMEN', 'deneme@deneme.deneme', '554 863 4430', '123456', ''),
+(43, 'Merhaba', 'BEN MUSTAFA', 'benben@gmail.com', '123456', '123456', ''),
+(44, 'Hasan', 'ÇıNAR', 'hasan@gmail.com', '1515153131', '123456', ''),
+(45, 'Salih', 'ERDURUCAN', 'salih@gmail.com', '111111', '123456', ''),
+(46, 'Akın', 'çABUK', 'makincabuk@gmail.com', '11111111', '123456', '');
+
+--
+-- Dökümü yapılmış tablolar için indeksler
+--
+
+--
+-- Tablo için indeksler `ayarlar`
+--
+ALTER TABLE `ayarlar`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `kategoriler`
+--
+ALTER TABLE `kategoriler`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `sepet`
+--
+ALTER TABLE `sepet`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `uretimyeri`
+--
+ALTER TABLE `uretimyeri`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `urunadlari`
+--
+ALTER TABLE `urunadlari`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `urunler`
+--
+ALTER TABLE `urunler`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `kategorifk` (`kategoriId`);
+
+--
+-- Tablo için indeksler `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
+--
+
+--
+-- Tablo için AUTO_INCREMENT değeri `ayarlar`
+--
+ALTER TABLE `ayarlar`
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `kategoriler`
+--
+ALTER TABLE `kategoriler`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `sepet`
+--
+ALTER TABLE `sepet`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `uretimyeri`
+--
+ALTER TABLE `uretimyeri`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `urunadlari`
+--
+ALTER TABLE `urunadlari`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `urunler`
+--
+ALTER TABLE `urunler`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- Dökümü yapılmış tablolar için kısıtlamalar
+--
+
+--
+-- Tablo kısıtlamaları `urunler`
+--
+ALTER TABLE `urunler`
+  ADD CONSTRAINT `kategorifk` FOREIGN KEY (`kategoriId`) REFERENCES `kategoriler` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
